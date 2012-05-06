@@ -25,6 +25,11 @@ gem 'jquery-rails'
 gem 'execjs'
 gem 'therubyracer'
 
+group :development do
+  gem 'sqlite3'
+  gem 'rspec-rails', '2.6.1.beta1'
+  gem 'faker', '0.3.1'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
