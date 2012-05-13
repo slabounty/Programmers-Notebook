@@ -1,42 +1,30 @@
 require 'spec_helper'
 
 describe "Pages" do
-  describe "Home page" do
-    it "should have the content 'Programmers\' Notebook'" do
-      visit '/pages/home'
-      page.should have_content('Programmers\' Notebook')
-    end
 
-    it "should have the title 'Home'" do
-      visit '/pages/home'
-      page.should have_selector('title',
-                        :text => "Programmer's Notebook | Home")
-    end
+  subject { page }
+
+  describe "Home page" do
+    before { visit root_path }
+    it { should have_content('Programmer\'s Notebook') }
+    it { should have_selector('title', text: full_title('Home')) }
   end
 
   describe "Contact page" do
-    it "should have the content 'Programmers\' Notebook Contact'" do
-      visit '/pages/contact'
-      page.should have_content('Programmers\' Notebook Contact')
-    end
-
-    it "should have the title 'Contact'" do
-      visit '/pages/contact'
-      page.should have_selector('title',
-                        :text => "Programmer's Notebook | Contact")
-    end
+    before { visit contact_path }
+    it { should have_content('Programmers\' Notebook Contact') }
+    it { should have_selector('title', text: full_title('Contact')) }
   end
 
   describe "About page" do
-    it "should have the content 'About'" do
-      visit '/pages/about'
-      page.should have_content('About')
-    end
+    before { visit about_path }
+      it { should have_content('About') }
+      it { should have_selector('title', text: full_title('About')) }
+  end
 
-    it "should have the title 'About'" do
-      visit '/pages/about'
-      page.should have_selector('title',
-                        :text => "Programmer's Notebook | About")
-    end
+  describe "Help page" do
+    before { visit help_path }
+      it { should have_content('Help') }
+      it { should have_selector('title', text: full_title('Help')) }
   end
 end
