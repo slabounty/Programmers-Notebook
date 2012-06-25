@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.2'
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
+gem 'faker'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 
@@ -32,7 +33,6 @@ gem 'therubyracer'
 group :development do
   gem 'sqlite3'
   gem 'rspec-rails'
-  gem 'faker'
   gem 'annotate', '~> 2.4.1.beta'
 end
 
