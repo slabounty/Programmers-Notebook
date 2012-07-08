@@ -8,6 +8,23 @@ describe "Pages" do
     before { visit root_path }
     it { should have_content('Programmer\'s Notebook') }
     it { should have_selector('title', text: full_title('Home')) }
+
+    describe "for signed-in users" do
+      let(:user) { FactoryGirl.create(:user) }
+      before do
+        FactoryGirl.create(:note, user: user, description: "Lorem ipsum", code: "Ipsum lorem")
+        FactoryGirl.create(:note, user: user, description: "Dolor sit amet", code: "Amet sit dolor")
+        sign_in user
+        visit root_path
+      end
+
+      it "should render the user's feed" do
+        user.feed.each do |item|
+          page.should have_selector("li##{item.id}", text: item.description)
+          page.should have_selector("li##{item.id}", text: item.code)
+        end
+      end
+    end
   end
 
   describe "Contact page" do

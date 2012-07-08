@@ -25,6 +25,7 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:notes) }
 
   it { should be_valid }
 
@@ -120,5 +121,38 @@ describe User do
   describe "remember token" do
     before {@user.save}
     its (:remember_token) { should_not be_blank }
+  end
+
+  describe "note association" do
+    before { @user.save }
+    let!(:older_note) do
+      FactoryGirl.create(:note, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_note) do
+      FactoryGirl.create(:note, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right notes in the right order" do
+      @user.notes.should == [newer_note, older_note]
+    end
+
+    it "should destroy associated notes" do
+      notes = @user.notes
+      @user.destroy
+      notes.each do |note|
+        Note.find_by_id(note.id).should be_nil
+      end
+    end
+
+    describe "status" do
+      let(:unfollowed_note) do
+        FactoryGirl.create(:note, user: FactoryGirl.create(:user))
+      end
+
+      its(:feed) { should include(newer_note) }
+      its(:feed) { should include(older_note) }
+      its(:feed) { should_not include(unfollowed_note) }
+      
+    end
   end
 end
