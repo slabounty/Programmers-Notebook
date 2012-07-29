@@ -1,6 +1,6 @@
 class ChangeUsersCodeToText < ActiveRecord::Migration
   def up
-    change_column :notes, :code, :text, :limit => 1023
+    change_column :notes, :code, :text
   end
 
   def down
