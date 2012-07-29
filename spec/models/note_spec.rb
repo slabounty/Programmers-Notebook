@@ -6,6 +6,7 @@ describe Note do
 
   subject { @note }
 
+  it { should respond_to(:syntax_highlighted_code) }
   it { should respond_to(:code) }
   it { should respond_to(:description) }
   it { should respond_to(:user_id) }

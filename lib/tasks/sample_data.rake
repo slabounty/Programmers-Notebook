@@ -28,7 +28,7 @@ def make_notes
     users = User.all(limit: 6)
     50.times do
       description = Faker::Lorem.sentence(5)
-      code = Faker::Lorem.sentence(5)
+      code = "def #{Faker::Lorem.words(1)}\n  '#{Faker::Lorem.words(1)}' \nend"
       users.each { |user| user.notes.create!(description: description, code: code) }
     end
 end
