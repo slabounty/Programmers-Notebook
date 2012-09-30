@@ -3,3 +3,10 @@
 The Programmer's Notebook is an application for programmers who would like
 to create notes and add gists for various day to day activities.
 
+== ToDo
+* Edit Posts
+* Add Private Posts
+* More Space for Posts (all the way across?)
+* Tagging
+* Facebook/Twitter Integration
+
