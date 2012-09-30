@@ -1,4 +1,5 @@
 class Note < ActiveRecord::Base
+
   attr_accessible :code, :description, :syntax_highlighted_code
   belongs_to :user
 
@@ -24,8 +25,7 @@ class Note < ActiveRecord::Base
   private
 
   def highlight_code
-    # HACK - for now we'll just set the code with pre/code in place.
-    # syntax_highlighted_code = "<pre><code>" + code + "</code></pre>"
-    self.syntax_highlighted_code = CodeRay.scan(code, :ruby).div(:line_numbers => :inline)
+    markdown = Redcarpet::Markdown.new(HTMLwithCodeRay, :fenced_code_blocks => true)
+    self.syntax_highlighted_code = markdown.render(self.code)
   end
 end
