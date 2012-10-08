@@ -1,0 +1,20 @@
+<%= provide(:title, 'Edit note') %>
+<h1>Update your note</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@note) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+
+      <%= f.label :code %>
+      <%= f.text_area :code %>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+  </div>
+</div>
+
