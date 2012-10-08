@@ -7,7 +7,7 @@ ProgrammersNotebook::Application.routes.draw do
   end
 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :notes, only: [:create, :destroy]
+  resources :notes, only: [:create, :destroy, :edit, :update]
   resources :relationships, only: [:create, :destroy]
 
   root to: 'pages#home'
