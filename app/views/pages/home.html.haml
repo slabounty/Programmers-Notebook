@@ -1,0 +1,29 @@
+- if signed_in? 
+  .row
+    %aside{class: "span4"}
+      %section
+        =render 'shared/user_info' 
+      %section
+        =render 'shared/stats' 
+    .span8
+      .row
+        .span4
+          %h3 Note Feed
+        .span4
+          =link_to "Add a New Note", "#", class: "btn btn-large btn-primary add_new" 
+      .row
+        .new_drop_down
+          =render 'shared/note_form' 
+      =render 'shared/feed' 
+- else 
+  - provide(:title, 'Home') 
+  .center.hero-unit
+    %h1 The Programmer's Notebook
+  
+    %h2
+      This is the home page for the
+      <a href="http://young-mist-1198.heroku.com/pages/home">The Programmer's Notebook</a>
+  
+    =link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" 
+    
+  =link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' 
