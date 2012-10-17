@@ -13,7 +13,7 @@ describe "NotePages" do
     describe "with invalid information" do
 
       it "should not create a note" do
-        expect { click_button "Post" }.should_not change(Note, :count)
+        expect { click_button "Post" }.to_not change(Note, :count)
       end
 
       describe "error messages" do
@@ -30,7 +30,7 @@ describe "NotePages" do
       end
 
       it "should create a note" do
-        expect { click_button "Post" }.should change(Note, :count).by(1)
+        expect { click_button "Post" }.to change(Note, :count).by(1)
       end
     end
   end
@@ -42,7 +42,7 @@ describe "NotePages" do
       before { visit root_path }
 
       it "should delete a note" do
-        expect { click_link "delete" }.should change(Note, :count).by(-1)
+        expect { click_link "delete" }.to change(Note, :count).by(-1)
       end
     end
   end

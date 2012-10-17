@@ -1,0 +1,15 @@
+= provide(:title, 'Edit note')
+%h1Update your note
+
+.row
+  .span6.offset3
+    = form_for(@note) do |f|
+      = render 'shared/error_messages', object: f.object
+
+      = f.label :description
+      = f.text_field :description
+
+      = f.label :code
+      = f.text_area :code
+
+      = f.submit "Save note", class: "btn btn-large btn-primary"

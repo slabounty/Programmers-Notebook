@@ -6,7 +6,7 @@
   <span class="description"><%= feed_item.description %></span>
   <span class="code"><%= feed_item.syntax_highlighted_code.html_safe %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+    PostedXX <%= time_ago_in_words(feed_item.created_at) %> ago.
   </span>
   <% if current_user?(feed_item.user) %>
     <%= link_to "edit", edit_note_path(feed_item) %>
