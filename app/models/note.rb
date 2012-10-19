@@ -1,6 +1,7 @@
 class Note < ActiveRecord::Base
 
-  attr_accessible :code, :description, :syntax_highlighted_code, :nonpublic
+  attr_accessible :code, :code_tags, :description, :syntax_highlighted_code, :nonpublic
+  attr_taggable :code_tags
   belongs_to :user
 
   before_save :highlight_code

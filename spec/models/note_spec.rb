@@ -8,6 +8,7 @@ describe Note do
 
   it { should respond_to(:syntax_highlighted_code) }
   it { should respond_to(:code) }
+  it { should respond_to(:code_tags) }
   it { should respond_to(:description) }
   it { should respond_to(:nonpublic) }
   it { should respond_to(:user_id) }
@@ -46,5 +47,16 @@ describe Note do
 
   describe "with nonpublic default" do
     it { @note.nonpublic.should == false }
+  end
+
+  describe "have tags" do
+    before do 
+      @note.code_tags = ["tag1", "tag2"] 
+      @note.save!
+      @tagged_note = Note.tagged_with(["tag1"]).first 
+    end
+    it { @note.code_tags.should include "tag1" }
+    it { @note.code_tags.should include "tag2" }
+    it { should == @tagged_note }
   end
 end

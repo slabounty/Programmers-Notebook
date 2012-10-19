@@ -6,6 +6,10 @@
     = feed_item.description
   %span{class: "code"}
     = feed_item.syntax_highlighted_code.html_safe
+  %span{class: "code"}
+    .btn_group
+      - feed_item.code_tags.each do |tag| 
+        = link_to tag, "#", class: "btn"
   %span{class: "timestamp"}
     Posted
     = time_ago_in_words(feed_item.created_at)

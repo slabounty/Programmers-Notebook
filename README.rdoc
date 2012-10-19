@@ -7,7 +7,7 @@ to create notes and add gists for various day to day activities.
 * Edit Notes (Complete - may need a better way)
 * Add Private Notes (Complete)
 * More Space for Notes (all the way across?)
-* Tagging
+* Tagging (Notes/User (interests))
 * Facebook/Twitter Integration
 * Email Notifications
 * Note Commenting

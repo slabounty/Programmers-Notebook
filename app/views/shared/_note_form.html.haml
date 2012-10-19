@@ -3,6 +3,7 @@
   .field
     = f.text_field :description, placeholder: "Description of note..."
     = f.text_area :code, placeholder: "The code for the note..."
+    = f.text_field :code_tags, placeholder: "Tags for this note..."
     = f.check_box :nonpublic
     = f.label :nonpublic, "Private", :style => "display:inline"
   = f.submit "Post", class: "btn btn-large btn-primary"
