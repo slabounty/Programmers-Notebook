@@ -7,7 +7,7 @@
   %span{class: "code"}
     = feed_item.syntax_highlighted_code.html_safe
   %span{class: "timestamp"}
-    PostedXX 
+    Posted
     = time_ago_in_words(feed_item.created_at)
     ago.
   - if current_user?(feed_item.user)

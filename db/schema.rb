@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120722231848) do
+ActiveRecord::Schema.define(:version => 20121018024144) do
 
   create_table "notes", :force => true do |t|
     t.text     "code",                    :limit => 1023
     t.string   "description"
     t.integer  "user_id"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
     t.text     "syntax_highlighted_code", :limit => 2047
+    t.boolean  "nonpublic",                               :default => false
   end
 
   add_index "notes", ["user_id", "created_at"], :name => "index_notes_on_user_id_and_created_at"

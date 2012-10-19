@@ -9,6 +9,7 @@ describe Note do
   it { should respond_to(:syntax_highlighted_code) }
   it { should respond_to(:code) }
   it { should respond_to(:description) }
+  it { should respond_to(:nonpublic) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
   its(:user) { should == user }
@@ -41,5 +42,9 @@ describe Note do
   describe "with blank code" do
     before { @note.code = " " }
     it { should_not be_valid }
+  end
+
+  describe "with nonpublic default" do
+    it { @note.nonpublic.should == false }
   end
 end

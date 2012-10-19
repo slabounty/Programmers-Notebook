@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @note  = current_user.notes.build
     @notes = @user.notes.paginate(page: params[:page])
   end
 

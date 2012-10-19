@@ -158,10 +158,14 @@ describe User do
         FactoryGirl.create(:note, user: FactoryGirl.create(:user))
       end
       let(:followed_user) { FactoryGirl.create(:user) }
+      let(:private_note) do
+        FactoryGirl.create(:note, user: followed_user, nonpublic: true)
+      end
 
       its(:feed) { should include(newer_note) }
       its(:feed) { should include(older_note) }
       its(:feed) { should_not include(unfollowed_note) }
+      its(:feed) { should_not include(private_note) }
       its(:feed) do
         followed_user.notes.each do |note|
           should include(note)

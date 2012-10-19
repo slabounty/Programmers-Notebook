@@ -1,6 +1,6 @@
 class Note < ActiveRecord::Base
 
-  attr_accessible :code, :description, :syntax_highlighted_code
+  attr_accessible :code, :description, :syntax_highlighted_code, :nonpublic
   belongs_to :user
 
   before_save :highlight_code
@@ -12,14 +12,7 @@ class Note < ActiveRecord::Base
   default_scope order: 'notes.created_at DESC'
 
   def self.from_users_followed_by(user)
-    followed_user_ids = user.followed_user_ids
-    where("user_id IN (:followed_user_ids) OR user_id = :user_id",
-          followed_user_ids: followed_user_ids, user_id: user)
-
-    followed_user_ids = "SELECT followed_id FROM relationships
-                         WHERE follower_id = :user_id"
-    where("user_id IN (#{followed_user_ids}) OR user_id = :user_id", 
-          user_id: user.id)
+    where{((user_id >> user.followed_user_ids) & (nonpublic == false)) | (user_id == user.id)}
   end
 
   private

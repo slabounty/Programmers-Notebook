@@ -14,5 +14,9 @@ FactoryGirl.define do
     code "Lorem ipsum"
     description "Ipsum lorem"
     user
+
+    factory :nonpublic do
+      nonpublic true
+    end
   end
 end

@@ -11,7 +11,15 @@
   .span8
     = render 'follow_form' if signed_in?
     - if @user.notes.any?
-      %h3 "Notes (#{@user.notes.count})"
+      .row
+        .span4
+          %h3 "Notes (#{@user.notes.count})"
+        .span4
+          - if current_user?(@user)
+            =link_to "Add a New Note", "#", class: "btn btn-large btn-primary add_new" 
+      .row
+        .new_drop_down
+          =render 'shared/note_form' 
       %ol{class: "notes"}
         = render @notes
       = will_paginate @notes
