@@ -17,9 +17,10 @@
         .span4
           - if current_user?(@user)
             =link_to "Add a New Note", "#", class: "btn btn-large btn-primary add_new" 
-      .row
-        .new_drop_down
-          =render 'shared/note_form' 
+      - if current_user?(@user)
+        .row
+          .new_drop_down
+            =render 'shared/note_form' 
       %ol{class: "notes"}
         = render @notes
       = will_paginate @notes
