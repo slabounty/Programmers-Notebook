@@ -1,0 +1,19 @@
+%span{class: "description"}
+  = note.description
+%span{class: "code"}
+  = note.syntax_highlighted_code.html_safe
+%span{class: "code"}
+  .btn_group
+    - note.code_tags.each do |tag| 
+      = link_to tag, "#", class: "btn"
+%span{class: "timestamp"}
+  Posted
+  = time_ago_in_words(note.created_at)
+  ago.
+- if current_user?(note.user)
+  = link_to "edit", edit_note_path(note)
+  = link_to "delete", note, method: :delete,
+                              data: { confirm: "You sure?" },
+                              title: note.description
+
+
