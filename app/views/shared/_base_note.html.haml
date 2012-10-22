@@ -5,7 +5,10 @@
 %span{class: "code"}
   .btn_group
     - note.code_tags.each do |tag| 
-      = link_to tag, "#", class: "btn"
+      = # Because path is passed in as a string, we need to add the 
+      = # tag in as part of a string. There may be a better way
+      = # to do this.
+      = link_to tag, "#{path}?tag=#{tag}", class: "btn"
 %span{class: "timestamp"}
   Posted
   = time_ago_in_words(note.created_at)

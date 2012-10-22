@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @note  = current_user.notes.build if !current_user.nil? && current_user?(@user)
-    @notes = @user.notes.paginate(page: params[:page])
+    @notes = @user.feed(true, params[:tag]).paginate(page: params[:page])
   end
 
   def create

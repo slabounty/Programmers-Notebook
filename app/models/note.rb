@@ -12,8 +12,12 @@ class Note < ActiveRecord::Base
 
   default_scope order: 'notes.created_at DESC'
 
-  def self.from_users_followed_by(user)
-    where{((user_id >> user.followed_user_ids) & (nonpublic == false)) | (user_id == user.id)}
+  def self.from_users_followed_by(user, user_only = false, tag = nil)
+    notes = user_only ? 
+        where{user_id == user.id}
+      : where{((user_id >> user.followed_user_ids) & (nonpublic == false)) | (user_id == user.id)}
+    notes = tagged_with(tag) if tag
+    notes
   end
 
   private

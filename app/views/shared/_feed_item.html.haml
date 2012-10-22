@@ -2,4 +2,4 @@
   = link_to gravatar_for(feed_item.user), feed_item.user
   %span{class: "user"}
     = link_to feed_item.user.name, feed_item.user
-  = render 'shared/base_note', note: feed_item
+  = render 'shared/base_note', note: feed_item, path: root_path

@@ -32,8 +32,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
-  def feed
-    Note.from_users_followed_by(self)
+  def feed(user_only = false, tag = nil)
+    Note.from_users_followed_by(self, user_only, tag)
   end
 
   def following?(other_user)

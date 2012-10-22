@@ -162,6 +162,11 @@ describe User do
         FactoryGirl.create(:note, user: followed_user, nonpublic: true)
       end
 
+      before do
+        @user.save
+        @user.follow!(followed_user)
+      end
+
       its(:feed) { should include(newer_note) }
       its(:feed) { should include(older_note) }
       its(:feed) { should_not include(unfollowed_note) }
@@ -171,6 +176,20 @@ describe User do
           should include(note)
         end
       end 
+      describe "tagging" do
+        let(:ruby_note) { FactoryGirl.create(:note, user: @user, code_tags: ["ruby"]) }
+        let(:bash_note) { FactoryGirl.create(:note, user: @user, code_tags: ["bash"]) }
+
+        it "should have the ruby note when ruby is tagged in the feed" do
+          @user.feed(true, ["ruby"]).should include(ruby_note)
+        end
+
+        it "should not have the bash note when ruby is tagged in the feed" do
+          @user.feed(true, ["ruby"]).should_not include(bash_note)
+        end
+
+        
+      end
     end
   end
 
