@@ -13,6 +13,7 @@ describe Note do
   it { should respond_to(:nonpublic) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
+  it { should respond_to(:comments) }
   its(:user) { should == user }
 
   it { should be_valid }

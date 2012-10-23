@@ -1,0 +1,24 @@
+- provide(:title, @note.description)
+.row
+  %aside{class: "span4"}
+    %section
+      %h1
+        = gravatar_for @note.user
+        = @note.user.name
+    %section
+      = render 'shared/stats'
+
+  .span8
+    .row
+      .span8
+        %h3 Note: #{@note.description}
+    .row
+      .span8
+        = render 'shared/base_note', note: @note, path: root_path
+    .row
+      .span8
+        - if @note.comments.any?
+          %h3 Comments
+          %ul{class: "comments"}
+            = render partial: 'comments/comment', collection: @note.comments
+        = render 'comments/new'

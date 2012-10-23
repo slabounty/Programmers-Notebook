@@ -12,6 +12,8 @@ class Note < ActiveRecord::Base
 
   default_scope order: 'notes.created_at DESC'
 
+  has_many :comments, dependent: :destroy
+
   def self.from_users_followed_by(user, user_only = false, tag = nil)
     notes = user_only ? 
         where{user_id == user.id}

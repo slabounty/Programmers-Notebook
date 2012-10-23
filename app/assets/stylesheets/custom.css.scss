@@ -217,7 +217,7 @@ input, textarea, select, .uneditable-input {
 
 /* notes */
 
-.notes {
+.notes, .comments {
   list-style: none;
   margin: 10px 0 0 0;
 
@@ -230,6 +230,9 @@ input, textarea, select, .uneditable-input {
   display: block;
 }
 .code {
+  display: block;
+}
+.comment {
   display: block;
 }
 .timestamp {

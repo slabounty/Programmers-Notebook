@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
-  before_filter :correct_user, only: :destroy
+  before_filter :correct_user, only: [:destroy, :edit]
 
   def create
     @note = current_user.notes.build(params[:note])
@@ -14,7 +14,6 @@ class NotesController < ApplicationController
   end
 
   def edit
-    puts "Note#edit params = #{params}"
     @note = Note.find(params[:id])
   end
 
@@ -32,11 +31,16 @@ class NotesController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @note = Note.find(params[:id])
+    @comment = Comment.new
+  end
+
   private
 
-    def correct_user
-      @note = current_user.notes.find_by_id(params[:id])
-      redirect_to root_path if @note.nil?
-    end
+  def correct_user
+    @note = current_user.notes.find_by_id(params[:id])
+    redirect_to root_path if @note.nil?
+  end
     
 end

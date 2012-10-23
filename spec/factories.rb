@@ -19,4 +19,8 @@ FactoryGirl.define do
       nonpublic true
     end
   end
+
+  factory :comment do
+    comment "Commentimus Maximus"
+  end
 end

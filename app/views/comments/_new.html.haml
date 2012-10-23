@@ -1,0 +1,8 @@
+= provide(:title, 'Comment')
+
+= form_for [@note, @comment] do |f|
+  = render 'shared/error_messages', object: f.object 
+
+  = f.text_field :comment, placeholder: "Add a comment ..."
+
+  = f.submit "Add my comment", { class: "btn btn-large btn-primary" }

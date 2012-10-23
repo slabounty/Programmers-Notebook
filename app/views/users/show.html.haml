@@ -13,7 +13,7 @@
     - if @user.notes.any?
       .row
         .span4
-          %h3 "Notes (#{@user.notes.count})"
+          %h3 Notes (#{@user.notes.count})
         .span4
           - if current_user?(@user)
             =link_to "Add a New Note", "#", class: "btn btn-large btn-primary add_new" 
