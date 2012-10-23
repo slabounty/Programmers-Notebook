@@ -4,3 +4,8 @@
     = link_to comment.user.name, comment.user
   %span{class: "comment"}
     = comment.comment
+  - if current_user?(comment.user)
+    =# link_to "edit", edit_note_comment_path(comment.note, comment)
+    = link_to "delete", note_comment_path(comment.note, comment), method: :delete,
+                                data: { confirm: "You sure?" },
+                                title: comment.comment

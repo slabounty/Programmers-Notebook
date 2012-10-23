@@ -39,6 +39,8 @@ gem 'therubyracer'
 group :development do
   gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'pry'
+  gem 'pry-rails'
   gem 'annotate', '~> 2.4.1.beta'
 end
 
