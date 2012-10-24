@@ -1,5 +1,5 @@
 = provide(:title, 'Edit note')
-%h1Update your note
+%h3 Update your note
 
 .row
   .span6.offset3
@@ -13,6 +13,6 @@
       = f.text_area :code
 
       = f.label :code_tags
-      = f.text_field :code_tags
+      = f.text_field :code_tags, value: f.object.code_tags.to_s.tr('":[]', "")
 
       = f.submit "Save note", class: "btn btn-large btn-primary"
