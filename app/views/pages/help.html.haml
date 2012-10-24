@@ -1,3 +1,80 @@
 - provide(:title, 'Help')
-%h1 Programmers' Notebook Help
+%h1 Programmers' Notebook Help/FAQ
 %p This is the help page for the Programmer's Notebook.
+%ul
+  %li
+    .question
+      What's Programmers Notebook?
+    .answer
+      A place to store all of those little items that you don't get to use every day and then have
+      to look up on Stackoverflow or similar. You can post code snippets, etc. and then go back 
+      when you can't remember how to do them.
+  %li
+    .question
+      How do I add a note?
+    .answer
+      Click the big blue button that says "Add a New Note". Then put in a description of the note, 
+      the note itself, and then some tags for the note.
+  %li
+    .question
+      How do I get the code to format nicely.
+    .answer
+      Put in three backticks followed by the language name, go to the next line, then three more backtics. 
+      For example
+      %code
+        %pre
+          = "```ruby\ndef test\n \"Test\"\nend\n```"
+  %li
+    .question
+      How about tags?
+    .answer
+      Just put them in as a comma separated list in the tag field. For example
+      %code
+        %pre
+          ruby, rails
+  %li
+    .question
+      What languages are supported?
+    .answer
+      %ol
+        %li C
+        %li CPlusPlus
+        %li CSS
+        %li Clojure
+        %li Debug
+        %li Delphi
+        %li Diff
+        %li ERB
+        %li Groovy
+        %li HAML
+        %li HTML
+        %li JSON
+        %li Java
+        %li JavaScript
+        %li PHP
+        %li Python
+        %li Raydebug
+        %li Ruby
+        %li SQL
+        %li Scanner
+        %li Text
+        %li XML
+        %li YAML 
+  %li
+    .question
+      What technologies did you use to build this site?
+    .answerer
+      Rails, HAML, Coderay, Github, Heroku mostly. 
+  %li
+    .question
+      Why did you build it?
+    .answer
+      To scratch an itch. To help me learn Rails better. To show potential employers what I could do. 
+  %li
+    .question
+      What's next?
+    .answer
+      There's a list on 
+      = link_to "GitHub", "github.com/slabounty/Programmers-Notebook"
+      of things I'd like to do.
+
