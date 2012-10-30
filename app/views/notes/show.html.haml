@@ -17,8 +17,8 @@
         = render 'shared/base_note', note: @note, path: root_path
     .row
       .span8
+        = render 'comments/new'
         - if @note.comments.any?
           %h3 Comments
           %ul{class: "comments"}
             = render partial: 'comments/comment', collection: @note.comments
-        = render 'comments/new'

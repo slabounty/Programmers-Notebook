@@ -5,7 +5,13 @@
   %span{class: "comment"}
     = comment.comment
   - if current_user?(comment.user)
-    =# link_to "edit", edit_note_comment_path(comment.note, comment)
+    %span{class: "edit_comment_link btn btn-primary", id: "edit_comment_link_#{comment.id}", comment_id: comment.id}
+      edit
+      
     = link_to "delete", note_comment_path(comment.note, comment), method: :delete,
                                 data: { confirm: "You sure?" },
-                                title: comment.comment
+                                title: comment.comment,
+                                class: "btn btn-primary"
+    .row
+      .comment_edit_drop_down{id: "comment_edit_drop_down_#{comment.id}"}
+        =render 'comments/edit', note: comment.note, comment: comment

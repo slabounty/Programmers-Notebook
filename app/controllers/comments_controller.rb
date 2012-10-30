@@ -23,9 +23,11 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     if @comment.update_attributes(params[:comment])
-        redirect_to root_path # Wrong path
+      flash[:success] = 'Edited Comment.'
+      redirect_to @comment.note
     else
-      render 'edit'
+      flash[:error] = 'Could not edit comment.'
+      redirect_to @comment.note
     end
   end
 
