@@ -6,7 +6,7 @@
         = gravatar_for @note.user
         = @note.user.name
     %section
-      = render 'shared/stats'
+      = render 'shared/stats', user: @note.user
 
   .span8
     .row
@@ -15,6 +15,13 @@
     .row
       .span8
         = render 'shared/base_note', note: @note, path: root_path
+    .row
+      .span1
+        Share: 
+      .span2
+        = render 'shared/fb_like', like_url: note_url(@note)
+      .span2
+        = render 'shared/twitter_share'
     .row
       .span8
         = render 'comments/new'

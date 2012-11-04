@@ -35,6 +35,22 @@ describe "NotePages" do
     end
   end
 
+  describe "note showing" do
+    let(:note) { FactoryGirl.create(:note) }
+    before do 
+      visit note_path(note) 
+    end
+
+    describe "page" do
+      it {should have_selector('h3', text: "Note:")}
+      it {should have_css('div.fb-like')}
+      # it {should have_css('div.twitter-button')}
+      # it {should have_selector('iframe.twitter-share-button')}
+      it {should have_selector('input', value: "Add my comment")}
+    end
+
+  end
+
   describe "note destruction" do
     before { FactoryGirl.create(:note, user: user) }
 

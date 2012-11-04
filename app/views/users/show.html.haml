@@ -6,7 +6,7 @@
         = gravatar_for @user
         = @user.name
     %section
-      = render 'shared/stats'
+      = render 'shared/stats', user: @user
 
   .span8
     = render 'follow_form' if signed_in?
