@@ -11,7 +11,8 @@
 
 class User < ActiveRecord::Base
 
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :interests
+  attr_taggable :interests
   has_secure_password
   has_many :notes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -33,6 +34,10 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+
+  def self.interested_in?(interest)
+    tagged_with(interest)
+  end
 
   def feed(user_only = false, tag = nil)
     Note.from_users_followed_by(self, user_only, tag)

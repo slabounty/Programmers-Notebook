@@ -63,6 +63,12 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def interested_in
+    puts "params = #{params}"
+    @users = User.interested_in?(params[:interest]).paginate(page: params[:page])
+    render 'index'
+  end
+
   private
 
   def correct_user

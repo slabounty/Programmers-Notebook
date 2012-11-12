@@ -4,4 +4,8 @@
   - if current_user.admin? && !current_user?(user)
     | 
     = link_to "delete", user, method: :delete, data: { confirm: "You sure?" }
+  %span{class: "code"}
+    .btn_group
+      - user.interests.each do |interest| 
+        = link_to interest, "#{interested_in_users_path}?interest=#{interest}", class: "btn"
 

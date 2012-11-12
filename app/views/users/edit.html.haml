@@ -18,6 +18,9 @@
       = f.label :password_confirmation, "Confirm Password" 
       = f.password_field :password_confirmation 
 
+      = f.label :interests
+      = f.text_field :interests, value: f.object.interests.to_s.tr('":[]', "")
+
       = f.submit "Save changes", class: "btn btn-large btn-primary" 
 
     = gravatar_for @user

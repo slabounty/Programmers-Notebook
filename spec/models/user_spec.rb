@@ -35,6 +35,7 @@ describe User do
   it { should respond_to(:following?) }
   it { should respond_to(:follow!) }
   it { should respond_to(:unfollow!) }
+  it { should respond_to(:interests) }
 
   it { should be_valid }
 
@@ -215,4 +216,22 @@ describe User do
       its(:followed_users) { should_not include(other_user) }
     end
   end
+
+  describe "interests" do
+    before do 
+      @user.interests = ["interest1", "interest2"] 
+      @user.save!
+      @tagged_user = User.tagged_with(["interest1"]).first 
+    end
+    it { @user.interests.should include "interest1" }
+    it { @user.interests.should include "interest2" }
+    it { should == @tagged_user }
+    it "should be interested in" do
+      User.interested_in?("interest1").should include(@user)
+    end
+    it "should not be interested in" do
+      User.interested_in?("interest3").should_not include(@user)
+    end
+  end
+
 end
