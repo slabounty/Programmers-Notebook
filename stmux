@@ -1,0 +1,49 @@
+#!/bin/bash
+
+TMUX_SESSION_NAME="programmers_notebook"
+
+# Get the fully qualified path to the directory holding this bash script
+PROJECT_DIR=$( cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
+
+tmux list-sessions 2> /dev/null | grep ${TMUX_SESSION_NAME}
+if [ $? -eq 0 ]; then
+  echo "The \"${TMUX_SESSION_NAME}\" tmux session already exists. Attaching to it..."
+
+  # Attach the terminal to the session.
+  tmux attach-session -d -t "${TMUX_SESSION_NAME}"
+else
+  echo "The \"${TMUX_SESSION_NAME}\" tmux session does NOT exist. Creating it..."
+
+  # Prime the CWD so that it is used as the CWD for the session and its windows
+  cd ${PROJECT_DIR}
+
+  # Create a new session.
+  tmux new-session -d -s "${TMUX_SESSION_NAME}"
+
+  # Source bash script containing user's session specific configurations
+  user_specific_session_script="${HOME}/.tmux/session_scripts/${TMUX_SESSION_NAME}"
+  if [ -e $user_specific_session_script ]; then
+    # Note: TMUX_SESSION_NAME and PROJECT_DIR are automatically available in
+    # the source'd user's session specific script.
+    source $user_specific_session_script
+  fi
+
+  # Create a new window inside the session called 'log' containing the apps dev logs.
+  tmux new-window -t "${TMUX_SESSION_NAME}" -n log -d '${SHELL}'
+  tmux send-keys -t "${TMUX_SESSION_NAME}:log" 'tail -f log/development.log' C-m
+
+  # Create a new window inside the session called 'foreman' running 'foreman start'.
+  tmux new-window -t "${TMUX_SESSION_NAME}" -n server -d '${SHELL}'
+  tmux send-keys -t "${TMUX_SESSION_NAME}:server" 'bundle exec rails s' C-m
+
+  # Create a new window inside the session called 'irb' running 'irb'.
+  tmux new-window -t "${TMUX_SESSION_NAME}" -n irb -d '${SHELL}'
+  tmux send-keys -t "${TMUX_SESSION_NAME}:irb" 'bundle exec irb' C-m
+
+  # Create a new window inside the session called 'console' running 'rails c'.
+  tmux new-window -t "${TMUX_SESSION_NAME}" -n console -d '${SHELL}'
+  tmux send-keys -t "${TMUX_SESSION_NAME}:console" 'bundle exec rails c' C-m
+
+  # Attach the terminal to the session.
+  tmux attach-session -d -t "${TMUX_SESSION_NAME}"
+fi
